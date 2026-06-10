@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #f8fafc;
+    --foreground: #09090b;
+    --brand-primary: #4f46e5;
+    --brand-secondary: #06b6d4;
+    --glow-color: rgba(79, 70, 229, 0.2);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #09090b;
+      --foreground: #f8fafc;
+      --brand-primary: #818cf8;
+      --brand-secondary: #22d3ee;
+      --glow-color: rgba(129, 140, 248, 0.15);
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background-color: var(--brand-secondary);
+    color: #000000;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 20px;
+  }
+  @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+      background-color: #27272a;
+    }
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--brand-primary);
+  }
+}
+
+/* Reemplazamos @apply por CSS NATIVO para evitar que Tailwind v4 colapse */
+@layer components {
+  
+  /* Panel de Cristal (Glassmorphism en CSS puro) */
+  .glass-panel {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .glass-panel {
+      background-color: rgba(24, 24, 27, 0.4);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  /* Tarjeta interactiva en CSS puro */
+  .card-hover {
+    transition: all 0.5s ease-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px var(--glow-color);
+  }
+
+  /* Botón Premium en CSS puro */
+  .btn-premium {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+    transition: all 0.3s ease;
+    background-size: 200% auto;
+    background-image: linear-gradient(to right, var(--brand-primary) 0%, var(--brand-secondary) 50%, var(--brand-primary) 100%);
+    animation: gradient-shift 4s linear infinite;
+  }
+
+  .btn-premium:hover {
+    transform: translateY(-4px);
+  }
+
+  .btn-premium:active {
+    transform: translateY(0) scale(0.95);
+  }
+
+  .btn-premium::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(-20deg);
+  }
+  
+  .btn-premium:hover::after {
+    animation: shine-effect 0.75s ease-out;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes shine-effect {
+  100% { left: 200%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,62 @@
+.layoutWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: var(--background);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.logoArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.roleBadge {
+  background-color: rgba(128, 128, 128, 0.1);
+  color: var(--foreground);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  font-weight: bold;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.logoutBtn {
+  color: #ef4444;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.logoutBtn:hover {
+  opacity: 0.7;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
